@@ -7,6 +7,9 @@ var winCount = 0;
 var displayWord = ("");
 var choices = ("abcdefghijklmnopqrstuvwxyz");
 var validInput = false;
+var gameReset = false;
+var gamesWon = 0;
+var gamesLost = 0;
 
 // Game Script Functions
 function printWordBlanks(){ // This function just prints the initial underscores for the length of the chosen word
@@ -56,9 +59,18 @@ function checkWord(){ //this function checkes user's guess with chosen word
 function checkEndState(){ // This function checks if the word is complete or if you've run out of guesses (6 in this case)
     if(winCount >= masterWord.length){
         alert("You've Done it!!!")
+        alert("Press any key to play again")
+        gameReset = true;
+        gamesWon++
+        alert("Games Won: "+gamesWon)
     }
     else if (loseCount >= 6){
         alert("You've been hung")
+        alert("The word was "+masterWord.toUpperCase())
+        alert("Press any key to play again")
+        gameReset = true;
+        gamesLost++
+        alert("Games Lost: "+gamesLost)
     }
 }
 function checkInput(){ // This function checks user's input and makes sure the choice is an available letter
@@ -79,6 +91,18 @@ function checkInput(){ // This function checks user's input and makes sure the c
     choices=newChoices;
     alphabet.textContent = choices.toUpperCase();
 }
+function gameRestart(){
+    masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+    wrongGuess = false;
+    loseCount = 0;
+    winCount = 0;
+    displayWord = ("");
+    choices = ("abcdefghijklmnopqrstuvwxyz");
+    validInput = false;
+    gameReset = false;
+    printWordBlanks()
+    document.getElementById("gallows").src = "assets/images/hangman0.jpg";
+}
 
 //Game Initial State Setup
 printWordBlanks()
@@ -86,9 +110,14 @@ printWordBlanks()
 // Game Execution
 document.onkeyup = function(event) {
     checkInput()
-    if (validInput==true){
-        checkWord()
-        checkEndState()
+    if (gameReset == false){
+        if (validInput==true){
+            checkWord()
+            checkEndState()
+        }
+        else {}
     }
-    else {}
+    else {
+        gameRestart()
+    }
 }
