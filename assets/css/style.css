@@ -2,16 +2,18 @@
     color:red;
 } */
 
-#guess{
-    color:red;
+#guess{ /* guess is the user's keypress */
+    /* color:blue; */
 }
 
 #word{
-    color:green;
+    /* color:red; */
+
+    /* need to change space between letters in final game */
 }
 
 #alphabet{
-    color:orange;
+    /* color:orange; */
 }
 
 
