@@ -1,7 +1,6 @@
 //Global Variables
 var wordlist = ["cthulhu", "hastur", "nyarlathotep", "yogsothoth", "azathoth", "yig","dagon","hydra","shubniggurath"]
 var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
-// console.log(masterWord)
 var wrongGuess = false;
 var loseCount = 0;
 var winCount = 0;
@@ -47,6 +46,7 @@ function checkWord(){ //this function checkes user's guess with chosen word
     if (wrongGuess == false){
         loseCount++
         alert("Wrong Guess, Try again")
+        document.getElementById("gallows").src = "assets/images/hangman"+loseCount+".jpg";
     }
     else{
         alert("Great Job!")

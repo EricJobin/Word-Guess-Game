@@ -7,15 +7,25 @@
 }
 
 #word{
-    /* color:red; */
-
     /* need to change space between letters in final game */
+    font-size: 50px;
+    font-weight: 1000;
+    letter-spacing: 0.1em;
+    /* font-family: 'Cormorant SC', serif; */
+    font-family: 'IM Fell English SC', serif;
+    color: #881111;
 }
 
 #alphabet{
     /* color:orange; */
+    font-family: 'IM Fell English SC', serif;
+    font-size: 30px;
 }
 
 
 
+/* References */
 
+/* font-family: 'IM Fell English SC', serif;
+font-family: 'Cormorant SC', serif;
+font-family: 'IM Fell DW Pica SC', serif; */
