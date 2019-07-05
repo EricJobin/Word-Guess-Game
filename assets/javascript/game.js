@@ -6,6 +6,8 @@ var wrongGuess = false;
 var loseCount = 0;
 var winCount = 0;
 var displayWord = ("");
+var choices = ("abcdefghijklmnopqrstuvwxyz");
+var validInput = false;
 
 // Game Script Functions
 function printWordBlanks(){
@@ -30,7 +32,7 @@ function replaceLetters(){
         }
     }
     displayWord=newWord;
-    word.textContent = displayWord;
+    word.textContent = displayWord.toUpperCase();
 }
 function checkWord(){
     wrongGuess=false; //should be false?
@@ -59,12 +61,39 @@ function checkEndState(){
         alert("You've been hung")
     }
 }
+function checkInput(){
+    validInput=false;
+    newChoices=""
+    for (var x=0; x < choices.length; x++){
+        if(event.key == choices.charAt(x)){
+            validInput=true;    
+        }
+        else{}
+
+        if (event.key == choices.charAt(x)){
+            console.log(choices.charAt(x));
+            newChoices=newChoices.concat("_")
+            console.log(newChoices.charAt(x))
+        }
+        else{
+            newChoices=newChoices.concat(choices.charAt(x))
+            console.log(choices.charAt(x))
+        }
+    }
+    choices=newChoices;
+    alphabet.textContent = choices.toUpperCase();
+}
+
 
 //Game Initial State Setup
 printWordBlanks()
 
 // Game Execution
 document.onkeyup = function(event) {
-    checkWord()
-    checkEndState()
+    checkInput()
+    if (validInput==true){
+        checkWord()
+        checkEndState()
+    }
+    else {}
 }
