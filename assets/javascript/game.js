@@ -5,40 +5,41 @@ var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
 console.log(masterWord)
 var wrongGuess = false;
 var loseCount = 0;
+var displayWord = ("");
 
-// document.write(masterWord)
-//id="guess" is the user's guess
-// alert("Select a letter")
-
-
-
-// var guess = document.getElementById("guess");
-//     document.onkeyup = function(event) {
-//         guess.textContent = event.key;
-//       };
 
 // Game Script Functions
-
-// for (var age = 0; age < 5; age++) {
-//     console.log("I am " + age);
-//     document.write("I am " + age +"<br>")
-// }
 
 function printWordBlanks(){
     var blank = ("");
     for(var x=0; x < masterWord.length; x++){
-        blank = blank.concat("_ ");
-        word.textContent = blank;
+        blank = blank.concat("_");
     }
+    displayWord = blank;
+    word.textContent = displayWord;
+}
+function replaceLetters(){
+    var newWord = ""
+    for(var x=0; x<masterWord.length; x++){
+        if(displayWord.charAt(x) == masterWord.charAt(x)){
+            newWord=newWord.concat(masterWord.charAt(x));
+        }
+        else if (event.key == masterWord.charAt(x)){
+            newWord=newWord.concat(event.key);
+        }
+        else {     //if(word.charAt(x) == "_"){
+            newWord=newWord.concat("_");
+        }
+    }
+    displayWord=newWord;
+    word.textContent = displayWord;
 }
 function checkWord(){
-    wrongGuess=0;
+    wrongGuess=false; //should be false?
     for(var x=0;x<masterWord.length; x++){
         if (event.key == masterWord.charAt(x)){
             wrongGuess = true;
-            //put in a function to write to word
-            // res = str.replace("Microsoft", "W3Schools");
-            blank = "x";
+            replaceLetters()
         }
         else{}
     }
@@ -59,16 +60,5 @@ printWordBlanks()
 // Game Execution
 
 document.onkeyup = function(event) {
-                            
-    if (event.key == questions[x].a ) {
-        // correctAnswer();
-        // x++;
-        // printquestion();
-    }
-    else{
-        // wrongAnswer();
-        // x++;
-        // printquestion();
-    }
-    
+    checkWord()  
 }
