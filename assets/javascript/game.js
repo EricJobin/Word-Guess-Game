@@ -1,5 +1,5 @@
 //Global Variables
-var wordlist = ["cthulhu", "hastur", "nyarlathotep", "yogsothoth", "azathoth", "yig","dagon","hydra","shubniggurath"]
+var wordlist = ["squamous", "eldritch", "cyclopean", "indescribable", "unnameable", "blasphemous","nameless","antiquarian","alienist","loathsome","porphyry",]
 var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
 var wrongGuess = false;
 var loseCount = 0;
@@ -102,6 +102,7 @@ function gameRestart(){
     gameReset = false;
     printWordBlanks()
     document.getElementById("gallows").src = "assets/images/hangman0.jpg";
+    alphabet.textContent = choices.toUpperCase();
 }
 
 //Game Initial State Setup
