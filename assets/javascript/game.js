@@ -1,15 +1,13 @@
 //Global Variables
-
 var wordlist = ["foo", "bar", "foobar", "foofoo", "barbar"]
 var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
-console.log(masterWord)
+// console.log(masterWord)
 var wrongGuess = false;
 var loseCount = 0;
+var winCount = 0;
 var displayWord = ("");
 
-
 // Game Script Functions
-
 function printWordBlanks(){
     var blank = ("");
     for(var x=0; x < masterWord.length; x++){
@@ -40,6 +38,7 @@ function checkWord(){
         if (event.key == masterWord.charAt(x)){
             wrongGuess = true;
             replaceLetters()
+            winCount++
         }
         else{}
     }
@@ -52,13 +51,20 @@ function checkWord(){
     }
     wrongGuess = false;
 }
-
+function checkEndState(){
+    if(winCount >= masterWord.length){
+        alert("You've Done it!!!")
+    }
+    else if (loseCount >= 5){
+        alert("You've been hung")
+    }
+}
 
 //Game Initial State Setup
 printWordBlanks()
 
 // Game Execution
-
 document.onkeyup = function(event) {
-    checkWord()  
+    checkWord()
+    checkEndState()
 }
