@@ -1,5 +1,5 @@
 //Global Variables
-var wordlist = ["foo", "bar", "foobar", "foofoo", "barbar"]
+var wordlist = ["cthulhu", "hastur", "nyarlathotep", "yogsothoth", "azathoth", "yig","dagon","hydra","shubniggurath"]
 var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
 // console.log(masterWord)
 var wrongGuess = false;
@@ -10,7 +10,7 @@ var choices = ("abcdefghijklmnopqrstuvwxyz");
 var validInput = false;
 
 // Game Script Functions
-function printWordBlanks(){
+function printWordBlanks(){ // This function just prints the initial underscores for the length of the chosen word
     var blank = ("");
     for(var x=0; x < masterWord.length; x++){
         blank = blank.concat("_");
@@ -18,7 +18,7 @@ function printWordBlanks(){
     displayWord = blank;
     word.textContent = displayWord;
 }
-function replaceLetters(){
+function replaceLetters(){ // This function will update the displayed word with correct letters
     var newWord = ""
     for(var x=0; x<masterWord.length; x++){
         if(displayWord.charAt(x) == masterWord.charAt(x)){
@@ -27,15 +27,15 @@ function replaceLetters(){
         else if (event.key == masterWord.charAt(x)){
             newWord=newWord.concat(event.key);
         }
-        else {     //if(word.charAt(x) == "_"){
+        else {
             newWord=newWord.concat("_");
         }
     }
     displayWord=newWord;
     word.textContent = displayWord.toUpperCase();
 }
-function checkWord(){
-    wrongGuess=false; //should be false?
+function checkWord(){ //this function checkes user's guess with chosen word
+    wrongGuess=false;
     for(var x=0;x<masterWord.length; x++){
         if (event.key == masterWord.charAt(x)){
             wrongGuess = true;
@@ -53,37 +53,32 @@ function checkWord(){
     }
     wrongGuess = false;
 }
-function checkEndState(){
+function checkEndState(){ // This function checks if the word is complete or if you've run out of guesses (6 in this case)
     if(winCount >= masterWord.length){
         alert("You've Done it!!!")
     }
-    else if (loseCount >= 5){
+    else if (loseCount >= 6){
         alert("You've been hung")
     }
 }
-function checkInput(){
+function checkInput(){ // This function checks user's input and makes sure the choice is an available letter
     validInput=false;
     newChoices=""
     for (var x=0; x < choices.length; x++){
-        if(event.key == choices.charAt(x)){
+        if(event.key == choices.charAt(x)){ // This if statement checks if user input is valid
             validInput=true;    
         }
         else{}
-
-        if (event.key == choices.charAt(x)){
-            console.log(choices.charAt(x));
+        if (event.key == choices.charAt(x)){ //This if statement updateds the available choices left to the player
             newChoices=newChoices.concat("_")
-            console.log(newChoices.charAt(x))
         }
         else{
             newChoices=newChoices.concat(choices.charAt(x))
-            console.log(choices.charAt(x))
         }
     }
     choices=newChoices;
     alphabet.textContent = choices.toUpperCase();
 }
-
 
 //Game Initial State Setup
 printWordBlanks()
