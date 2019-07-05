@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST Hangman</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="jumbotron textbox shadow">
+                            <h2>Are there any  <span id="guess">???</span></h2>
+                            <span id="word">______</span>
+                            <hr>
+                            <span id="alphabet">Letters left: <strong>ABCDEFGHIJKLMNOPQRSTUVWXYZ</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+    var wordlist = ["foo", "bar", "foobar", "foofoo", "barbar"]
+    // var masterWord = wordlist[Math.floor(Math.random() * wordlist.length)];
+    var masterWord = ("foobar");
+    console.log(masterWord)
+    var wrongGuess = false;
+    var loseCount = 0;
+    var displayWord = ("");
+    // var blank = ("");
+
+    function printWordBlanks(){
+        var blank = ("");
+        for(var x=0; x < masterWord.length; x++){
+            blank = blank.concat("_");
+            // word.textContent = blank;
+        }
+        displayWord = blank;
+        word.textContent = displayWord;
+    }
+
+    function replaceLetters(){
+        var newWord = ""
+        for(var x=0; x<masterWord.length; x++){
+            if(displayWord.charAt(x) == masterWord.charAt(x)){
+                newWord=newWord.concat(masterWord.charAt(x));
+            }
+            else if (testGuess == masterWord.charAt(x)){
+                newWord=newWord.concat(testGuess);
+            }
+            else {     //if(word.charAt(x) == "_"){
+                newWord=newWord.concat("_");
+            }
+        }
+        word.textContent = newWord;
+    }
+
+    function checkWord(){
+        wrongGuess=0;
+        for(var x=0;x<masterWord.length; x++){
+            // if (event.key == masterWord.charAt(x)){
+            if (testGuess == masterWord.charAt(x)){
+                wrongGuess = true;
+                //put in a function to write to word
+                // res = str.replace("Microsoft", "W3Schools");
+
+                // blank = blank.replace(blank.charAt(x), testGuess);
+                // // blank = "x";
+                // word.textContent = blank;
+                // console.log(blank);
+                replaceLetters()
+            }
+            else{}
+        }
+
+        if (wrongGuess == false){
+            loseCount++
+            alert("Wrong Guess, Try again")
+        }
+        else{
+            alert("Great Job!")
+        }
+        
+        wrongGuess = false;
+    }
+
+    printWordBlanks()
+    var testGuess = prompt("enter your letter guess");
+    
+    checkWord()
+
+
+
+
+    </script>
+
+
+
+
+    <!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

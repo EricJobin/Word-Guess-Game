@@ -37,10 +37,12 @@ function checkWord(){
         if (event.key == masterWord.charAt(x)){
             wrongGuess = true;
             //put in a function to write to word
+            // res = str.replace("Microsoft", "W3Schools");
+            blank = "x";
         }
         else{}
     }
-    if (wrongGuess === false){
+    if (wrongGuess == false){
         loseCount++
         alert("Wrong Guess, Try again")
     }
