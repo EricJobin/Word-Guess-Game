@@ -62,7 +62,7 @@ function checkEndState(){ // This function checks if the word is complete or if 
         alert("Press any key to play again")
         gameReset = true;
         gamesWon++
-        alert("Games Won: "+gamesWon+"<br>"+"Games Lost: "+gamesLost)
+        alert("Games Won: "+gamesWon +"\nGames Lost: "+gamesLost)
     }
     else if (loseCount >= 6){
         alert("You've been hung")
@@ -70,7 +70,7 @@ function checkEndState(){ // This function checks if the word is complete or if 
         alert("Press any key to play again")
         gameReset = true;
         gamesLost++
-        alert("Games Won: "+gamesWon+"<br>"+"Games Lost: "+gamesLost)
+        alert("Games Won: "+gamesWon +"\nGames Lost: "+gamesLost)
     }
 }
 function checkInput(){ // This function checks user's input and makes sure the choice is an available letter
